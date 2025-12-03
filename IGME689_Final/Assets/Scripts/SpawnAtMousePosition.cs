@@ -8,7 +8,7 @@ public class SpawnAtMousePosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             Debug.Log("CLICK");
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
