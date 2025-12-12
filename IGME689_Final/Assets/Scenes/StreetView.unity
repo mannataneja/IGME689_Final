@@ -1492,11 +1492,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28231f3384376284f8817b9a8393c8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  locations:
+  - {x: -74.06, y: 40.7182}
+  - {x: -71.0565, y: 42.3555}
+  - {x: -122.4194, y: 37.7749}
+  currentLocationIndex: 0
   minutes: 0
   seconds: 15
   timeUp: 0
   longitude: 0
   latitude: 0
+  pointDropped: 0
 --- !u!1 &1605667242
 GameObject:
   m_ObjectHideFlags: 0

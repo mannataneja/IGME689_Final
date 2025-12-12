@@ -1,10 +1,16 @@
 using UnityEngine;
 using Esri.ArcGISMapsSDK.Components;
+using Esri.GameEngine.Geometry;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public List<Vector2> locations;
+    public int currentLocationIndex = 0;
 
     [SerializeField] public int minutes;
     [SerializeField] public int seconds;
@@ -55,6 +61,15 @@ public class GameManager : MonoBehaviour
             seconds = FindFirstObjectByType<Timer>().seconds;
             LoadGlobeScene();
         }
+        if (Input.GetKey(KeyCode.N) && currentLocationIndex < 2)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                minutes = 3;
+                seconds = 0;
+                StartCoroutine(NewLocation());
+            }
+        }
     }
     void CreateSingleton()
     {
@@ -75,5 +90,15 @@ public class GameManager : MonoBehaviour
     public void LoadStreetView()
     {
         SceneManager.LoadScene(0);
+    }
+    public IEnumerator NewLocation()
+    {
+        currentLocationIndex++;
+        Debug.Log("new scene");
+        SceneManager.LoadScene(0);
+        yield return new WaitForSeconds(1);
+        FindFirstObjectByType<ArcGISMapComponent>().OriginPosition = new ArcGISPoint(locations[0].x, locations[0].y, 0, ArcGISSpatialReference.WGS84());
+        FindFirstObjectByType<FirstPersonController>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[0].x, locations[0].y, 20, ArcGISSpatialReference.WGS84());
+        FindFirstObjectByType<ArcGISCameraComponent>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[0].x, locations[0].y, 150, ArcGISSpatialReference.WGS84());
     }
 }
