@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6a9aaa2a00c5640a434bc649af7bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Score
-  maxScore: 0
+  maxScore: 10
   actualScore: 0
   scoreText: {fileID: 1192448446}
   actualPointPrefab: {fileID: 4589562068156986251, guid: 6fd01c6881eb3a14a9c48c93e4287368, type: 3}

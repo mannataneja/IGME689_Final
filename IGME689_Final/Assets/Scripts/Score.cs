@@ -2,6 +2,7 @@ using UnityEngine;
 using Esri.ArcGISMapsSDK.Components;
 using Esri.GameEngine.Geometry;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class Score : MonoBehaviour
@@ -17,6 +18,13 @@ public class Score : MonoBehaviour
     public double pointDropLatitude;
 
     public float difference;
+    private void Start()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            scoreText.text = "Total Score : " + FindFirstObjectByType<GameManager>().cumulativeScore + "/" + FindFirstObjectByType<GameManager>().maxCumulativeScore;
+        }
+    }
     public void CalculateScore(double longitude, double latitude)
     {
         spawnLongitude = FindFirstObjectByType<GameManager>().longitude;
@@ -26,11 +34,18 @@ public class Score : MonoBehaviour
         ArcGISLocationComponent locationComponent = actualPoint.AddComponent<ArcGISLocationComponent>();
         locationComponent.Position = new ArcGISPoint(spawnLongitude, spawnLatitude, 0, ArcGISSpatialReference.WGS84());
 
+        Debug.Log("long" + spawnLongitude);
+        Debug.Log("lat" + spawnLatitude);
+
         pointDropLonitude = longitude;
         pointDropLatitude = latitude;
 
         difference = Mathf.Abs(((float)spawnLongitude - (float)pointDropLonitude) + ((float)spawnLatitude - (float)pointDropLatitude));
-        actualScore = (int)(((55 - difference) / 55) * 10);
+        actualScore = (int)(((55 - difference) / 55) * maxScore);
+        if(actualScore < 0)
+        {
+            actualScore = 0;
+        }
         scoreText.text = "Score : " + actualScore.ToString();
     }
 }

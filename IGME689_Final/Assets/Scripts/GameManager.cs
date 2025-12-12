@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     public bool pointDropped = false;
 
+    public int cumulativeScore = 0;
+    public int maxCumulativeScore = 0;
+
     private void Awake()
     {
         CreateSingleton();
@@ -52,7 +55,7 @@ public class GameManager : MonoBehaviour
             {
                 minutes = FindFirstObjectByType<Timer>().minutes;
                 seconds = FindFirstObjectByType<Timer>().seconds;
-                LoadStreetView();
+                StartCoroutine(LoadStreetView());
             }
         }
         if (timeUp && SceneManager.GetActiveScene().buildIndex == 0)
@@ -65,9 +68,22 @@ public class GameManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
+                cumulativeScore += FindFirstObjectByType<Score>().actualScore;
+                maxCumulativeScore += FindFirstObjectByType<Score>().maxScore;
+
+                pointDropped = false;
                 minutes = 3;
                 seconds = 0;
                 StartCoroutine(NewLocation());
+            }
+        }
+        if (Input.GetKey(KeyCode.F))
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                cumulativeScore += FindFirstObjectByType<Score>().actualScore;
+                maxCumulativeScore += FindFirstObjectByType<Score>().maxScore;
+                LoadTotalScore();
             }
         }
     }
@@ -87,18 +103,36 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         SceneManager.LoadScene(1);
     }
-    public void LoadStreetView()
+    public IEnumerator LoadStreetView()
     {
         SceneManager.LoadScene(0);
+
+        yield return new WaitForSeconds(1);
+
+        FindFirstObjectByType<ArcGISMapComponent>().OriginPosition = new ArcGISPoint(locations[currentLocationIndex].x, locations[currentLocationIndex].y, 0, ArcGISSpatialReference.WGS84());
+        FindFirstObjectByType<FirstPersonController>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[currentLocationIndex].x, locations[currentLocationIndex].y, 20, ArcGISSpatialReference.WGS84());
+        FindFirstObjectByType<ArcGISCameraComponent>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[currentLocationIndex].x, locations[currentLocationIndex].y, 150, ArcGISSpatialReference.WGS84());
+
+        longitude = locations[currentLocationIndex].x;
+        latitude = locations[currentLocationIndex].y;
     }
     public IEnumerator NewLocation()
     {
         currentLocationIndex++;
         Debug.Log("new scene");
         SceneManager.LoadScene(0);
+
         yield return new WaitForSeconds(1);
-        FindFirstObjectByType<ArcGISMapComponent>().OriginPosition = new ArcGISPoint(locations[0].x, locations[0].y, 0, ArcGISSpatialReference.WGS84());
-        FindFirstObjectByType<FirstPersonController>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[0].x, locations[0].y, 20, ArcGISSpatialReference.WGS84());
-        FindFirstObjectByType<ArcGISCameraComponent>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[0].x, locations[0].y, 150, ArcGISSpatialReference.WGS84());
+
+        FindFirstObjectByType<ArcGISMapComponent>().OriginPosition = new ArcGISPoint(locations[currentLocationIndex].x, locations[currentLocationIndex].y, 0, ArcGISSpatialReference.WGS84());
+        FindFirstObjectByType<FirstPersonController>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[currentLocationIndex].x, locations[currentLocationIndex].y, 20, ArcGISSpatialReference.WGS84());
+        FindFirstObjectByType<ArcGISCameraComponent>().GetComponent<ArcGISLocationComponent>().Position = new ArcGISPoint(locations[currentLocationIndex].x, locations[currentLocationIndex].y, 150, ArcGISSpatialReference.WGS84());
+
+        longitude = locations[currentLocationIndex].x;
+        latitude = locations[currentLocationIndex].y;
+    }
+    public void LoadTotalScore()
+    {
+        SceneManager.LoadScene(2);
     }
 }
