@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if ((Input.GetKey(KeyCode.M) && !timeUp) || timeUp)
+        if ((Input.GetKeyDown(KeyCode.M) && !timeUp) || timeUp)
         {
             if(SceneManager.GetActiveScene().buildIndex == 0)
             {
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
                 LoadGlobeScene();
             }
         }
-        if (Input.GetKey(KeyCode.S) && !timeUp)
+        if (Input.GetKeyDown(KeyCode.S) && !timeUp)
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
@@ -58,21 +58,30 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(LoadStreetView());
             }
         }
-        if (Input.GetKey(KeyCode.N) && currentLocationIndex < 2)
+        if (Input.GetKeyDown(KeyCode.N))
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
-                cumulativeScore += FindFirstObjectByType<Score>().actualScore;
-                maxCumulativeScore += FindFirstObjectByType<Score>().maxScore;
+                if(currentLocationIndex < 2)
+                {
+                    cumulativeScore += FindFirstObjectByType<Score>().actualScore;
+                    maxCumulativeScore += FindFirstObjectByType<Score>().maxScore;
 
-                pointDropped = false;
-                minutes = 3;
-                seconds = 0;
-                timeUp = false;
-                StartCoroutine(NewLocation());
+                    pointDropped = false;
+                    minutes = 3;
+                    seconds = 0;
+                    timeUp = false;
+                    StartCoroutine(NewLocation());
+                }
+                else
+                {
+                    cumulativeScore += FindFirstObjectByType<Score>().actualScore;
+                    maxCumulativeScore += FindFirstObjectByType<Score>().maxScore;
+                    LoadTotalScore();
+                }
             }
         }
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
@@ -81,7 +90,7 @@ public class GameManager : MonoBehaviour
                 LoadTotalScore();
             }
         }
-        if (Input.GetKey(KeyCode.R) && !timeUp)
+        if (Input.GetKeyDown(KeyCode.R) && !timeUp)
         {
             if (SceneManager.GetActiveScene().buildIndex == 0)
             {
@@ -122,9 +131,9 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator NewLocation()
     {
-        currentLocationIndex++;
         Debug.Log("new scene");
         SceneManager.LoadScene(0);
+        currentLocationIndex++;
 
         yield return new WaitForSeconds(1);
 

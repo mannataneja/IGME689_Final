@@ -12,13 +12,11 @@ public class DropPoint : MonoBehaviour
     {
         locationComponent = gameObject.AddComponent<ArcGISLocationComponent>();
 
-        StartCoroutine(Score());
+        Score();
     }
-    public IEnumerator Score()
+    public void Score()
     {
-        yield return new WaitForSeconds(1);
-
-        FindFirstObjectByType<Score>().CalculateScore(locationComponent.Position.X, locationComponent.Position.Y);
+        StartCoroutine(FindFirstObjectByType<Score>().CalculateScore(locationComponent.Position.X, locationComponent.Position.Y));
     }
 
 }
