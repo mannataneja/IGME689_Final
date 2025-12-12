@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int seconds;
     public bool timeUp = false;
 
-    [SerializeField] double longitude;
-    [SerializeField] double latitude;
+    [SerializeField] public double longitude;
+    [SerializeField] public double latitude;
+
+    public bool pointDropped = false;
 
     private void Awake()
     {

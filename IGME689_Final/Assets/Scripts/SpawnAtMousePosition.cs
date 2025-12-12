@@ -3,12 +3,12 @@ using UnityEngine;
 public class SpawnAtMousePosition : MonoBehaviour
 {
     public Camera cam;
-    public GameObject prefab;
+    public GameObject dropPointPrefab;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !FindAnyObjectByType<GameManager>().pointDropped)
         {
             Debug.Log("CLICK");
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -16,7 +16,8 @@ public class SpawnAtMousePosition : MonoBehaviour
             if(Physics.Raycast(ray, out RaycastHit hit))
             {
                 Debug.Log("SPAWN");
-                GameObject point = Instantiate(prefab, hit.point, Quaternion.identity, this.transform.parent);
+                GameObject point = Instantiate(dropPointPrefab, hit.point, Quaternion.identity, this.transform.parent);
+                FindAnyObjectByType<GameManager>().pointDropped = true;
             }
         }
     }
