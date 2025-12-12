@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.M) && !timeUp)
+        if ((Input.GetKey(KeyCode.M) && !timeUp) || timeUp)
         {
             if(SceneManager.GetActiveScene().buildIndex == 0)
             {
@@ -58,12 +58,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(LoadStreetView());
             }
         }
-        if (timeUp && SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            minutes = FindFirstObjectByType<Timer>().minutes;
-            seconds = FindFirstObjectByType<Timer>().seconds;
-            LoadGlobeScene();
-        }
         if (Input.GetKey(KeyCode.N) && currentLocationIndex < 2)
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -74,6 +68,7 @@ public class GameManager : MonoBehaviour
                 pointDropped = false;
                 minutes = 3;
                 seconds = 0;
+                timeUp = false;
                 StartCoroutine(NewLocation());
             }
         }
@@ -84,6 +79,15 @@ public class GameManager : MonoBehaviour
                 cumulativeScore += FindFirstObjectByType<Score>().actualScore;
                 maxCumulativeScore += FindFirstObjectByType<Score>().maxScore;
                 LoadTotalScore();
+            }
+        }
+        if (Input.GetKey(KeyCode.R) && !timeUp)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                minutes = FindFirstObjectByType<Timer>().minutes;
+                seconds = FindFirstObjectByType<Timer>().seconds;
+                StartCoroutine(LoadStreetView());
             }
         }
     }

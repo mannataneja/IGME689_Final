@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     [SerializeField] TMP_Text secondsText;
     [SerializeField] TMP_Text timeUpText;
 
+    [SerializeField] TMP_Text locationText;
     public int minutes;
     public int seconds;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +22,7 @@ public class Timer : MonoBehaviour
         minutesText.text = minutes.ToString("00");
         secondsText.text = seconds.ToString("00");
 
+        locationText.text = "Location: " + (FindFirstObjectByType<GameManager>().currentLocationIndex + 1).ToString() + "/" + FindFirstObjectByType<GameManager>().locations.Count;
         StartCoroutine(StartTimer());
     }
 
