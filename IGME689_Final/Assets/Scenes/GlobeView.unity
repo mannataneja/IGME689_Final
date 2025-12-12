@@ -209,8 +209,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35279545, y: 0.440866, z: -0.19387746, w: 0.8022369}
-  m_LocalPosition: {x: -13.608066, y: 17.577703, z: -8.642061}
+  m_LocalRotation: {x: 0.69788516, y: 0.013857629, z: -0.013473259, w: 0.7159489}
+  m_LocalPosition: {x: -14669.943, y: 7733391, z: -385126.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,18 +287,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ArcGISMapsSDK::Esri.ArcGISMapsSDK.Components.ArcGISLocationComponent
   position:
-    X: -74.06016104284336
-    Y: 40.712722177604135
-    Z: 17.577724014647124
+    X: -98.42544837240624
+    Y: 37.93470642814023
+    Z: 7738659.406593369
     SRWkid: 4326
     SpatialReference:
       WKID: 4326
       VerticalWKID: 0
     version: 1
   rotation:
-    Heading: 57.581521141326846
-    Pitch: 42.52345078240444
-    Roll: 359.99998090768264
+    Heading: 2.1676512126859393
+    Pitch: 0
+    Roll: 0
   surfacePlacementMode: 0
   surfacePlacementOffset: 0
   version: 1
@@ -336,15 +336,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Esri.HPFramework::Esri.HPFramework.HPTransform
   m_IsInitialized: 1
   m_LocalPosition:
-    x: 1329603.6527387453
-    y: 4138305.153480689
-    z: -4655322.008249483
+    x: -1632327.0574482412
+    y: 8657172.46564095
+    z: -11020225.203303374
   m_LocalRotation:
     value:
-      x: -0.036207817
-      y: -0.19528082
-      z: 0.35849032
-      w: -0.91216177
+      x: 0.32362235
+      y: 0.075584635
+      z: -0.04176872
+      w: 0.9422372
   m_LocalScale:
     x: 1
     y: 1
@@ -592,8 +592,8 @@ MonoBehaviour:
     UseOriginAsCenter: 0
   layers: []
   originPosition:
-    X: -74.06
-    Y: 40.7128
+    X: -98.35
+    Y: 39.5
     Z: 0
     SRWkid: 4326
     SpatialReference:
@@ -629,15 +629,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Esri.HPFramework::Esri.HPFramework.HPRoot
   m_LocalPosition:
-    x: 1329611.5304007835
-    y: 4138300.2386952764
-    z: -4655300.039461424
+    x: -715672.4338670411
+    y: 4035303.5195490597
+    z: -4875964.139744695
   m_LocalRotation:
     value:
-      x: -0.41294494
-      y: -0.1260258
-      z: -0.057815157
-      w: 0.90013963
+      x: -0.42543676
+      y: 0.06584708
+      z: 0.031055497
+      w: 0.902055
 --- !u!4 &1605667245
 Transform:
   m_ObjectHideFlags: 0
