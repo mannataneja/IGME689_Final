@@ -1737,6 +1737,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1010587101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1010587102}
+  - component: {fileID: 1010587103}
+  m_Layer: 0
+  m_Name: Query Rivers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1010587102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010587101}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1605667245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1010587103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010587101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31882a024e9feff479aa251167d6d71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RiverQuery
 --- !u!1 &1084825741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,32 +1790,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1084825743}
-  - component: {fileID: 1084825742}
+  - component: {fileID: 1084825744}
   m_Layer: 0
   m_Name: Feature Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1084825742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1084825741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08759d50d316696418543dd103665b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FeatureLayer
-  prefab: {fileID: 5487420438087391121, guid: 340f533c286ae41469b005039dbcc164, type: 3}
-  FeatureItems: []
-  WebLink:
-    Link: https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Rivers_and_Streams/FeatureServer/0/query?geometry=-71.0589,42.3601&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&distance=3000&units=esriSRUnit_Meter&outFields=Name,Feature,Miles,State&returnGeometry=true&f=geojson
-    RequestHeaders: []
-  mapComponent: {fileID: 1605667243}
+  m_IsActive: 0
 --- !u!4 &1084825743
 Transform:
   m_ObjectHideFlags: 0
@@ -1787,6 +1813,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1605667245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1084825744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084825741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b74059917eeb04a8b5baf53d17e38d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FeatureLayer
+  prefab: {fileID: 5487420438087391121, guid: 340f533c286ae41469b005039dbcc164, type: 3}
+  FeatureItems: []
+  WebLink:
+    Link: https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Rivers_and_Streams/FeatureServer/0/query?geometry=-122.4194,37.7749&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&distance=20000&units=esriSRUnit_Meter&outFields=Name,Feature,Miles,State&returnGeometry=true&f=geojson
+    RequestHeaders: []
+  mapComponent: {fileID: 1605667243}
 --- !u!1 &1093853304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,6 +2757,7 @@ Transform:
   - {fileID: 1093853310}
   - {fileID: 330585546}
   - {fileID: 1084825743}
+  - {fileID: 1010587102}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623682772
