@@ -4,14 +4,16 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
+using TMPro;
 
 public class RiverQuery : MonoBehaviour
 {
+    [SerializeField] TMP_Text hintText;
     private const int RadiusMeters = 20000;
 
     private void Start()
     {
-        QueryRivers(-122.4194, 37.7749);
+        QueryRivers(-74.06, 40.7128);
     }
     public void QueryRivers(double longitude, double latitude)
     {
@@ -74,6 +76,8 @@ public class RiverQuery : MonoBehaviour
         {
             Debug.Log("Nearby rivers are: " + string.Join(", ", rivers.Distinct()));
         }
+
+        hintText.text = "HINT! Rivers nearby: " + string.Join(", ", rivers.Distinct());
     }
 
 }

@@ -132,6 +132,8 @@ public class GameManager : MonoBehaviour
         FindFirstObjectByType<Weather>().longitude = longitude;
         FindFirstObjectByType<Weather>().latitude = latitude;
         FindFirstObjectByType<Weather>().CallWeatherAPI();
+
+        FindFirstObjectByType<RiverQuery>().QueryRivers(longitude, latitude);
     }
     public IEnumerator NewLocation()
     {
@@ -151,6 +153,8 @@ public class GameManager : MonoBehaviour
         FindFirstObjectByType<Weather>().longitude = longitude;
         FindFirstObjectByType<Weather>().latitude = latitude;
         FindFirstObjectByType<Weather>().CallWeatherAPI();
+
+        FindFirstObjectByType<RiverQuery>().QueryRivers(longitude, latitude);
     }
     public void LoadTotalScore()
     {
